@@ -50,6 +50,14 @@ public class Cliente {
         this.datNascimento = datNascimento;
     }
 
+    public Cliente(BigDecimal idCliente, String email, String cpf, Date datNascimento, List<Aplicacao> aplicacoes) {
+        this.idCliente = idCliente;
+        this.email = email;
+        this.cpf = cpf;
+        this.datNascimento = datNascimento;
+        this.aplicacoes = aplicacoes;
+    }
+
     // === GETTERS E SETTERS ===
     public BigDecimal getIdCliente() {
         return idCliente;
@@ -75,12 +83,12 @@ public class Cliente {
         return datNascimento;
     }
 
-    public List<Aplicacao> getAplicacoes() {
-        return aplicacoes;
-    }
-
     public void setDatNascimento(Date datNascimento) {
         this.datNascimento = datNascimento;
+    }
+
+    public List<Aplicacao> getAplicacoes() {
+        return aplicacoes;
     }
 
     // === EQUALS E HASHCODE ===
