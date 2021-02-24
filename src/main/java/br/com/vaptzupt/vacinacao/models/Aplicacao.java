@@ -10,49 +10,58 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Aplicacoes {
+@Table(name = "APLICACOES")
+public class Aplicacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigDecimal idAplicacoes;
+    private BigDecimal idAplicacao;
 
     @ManyToOne
     @JoinColumn(name = "idCliente")
-    private Clientes cliente;
+    private Cliente cliente;
 
     @NotNull
     private String nomVacina;
-
 
     @NotNull
     private Date datAplicacao;
 
     // === CONSTRUTORES ===
-    public Aplicacoes() {
+    public Aplicacao() {
     }
 
-    public Aplicacoes(Clientes cliente, String nomVacina, Date datAplicacao) {
+    public Aplicacao(Cliente cliente, String nomVacina, Date datAplicacao) {
+        this.cliente = cliente;
+        this.nomVacina = nomVacina;
+        this.datAplicacao = datAplicacao;
+    }
+
+    public Aplicacao(BigDecimal idAplicacao, Cliente cliente, String nomVacina,
+        Date datAplicacao) {
+        this.idAplicacao = idAplicacao;
         this.cliente = cliente;
         this.nomVacina = nomVacina;
         this.datAplicacao = datAplicacao;
     }
 
     // === GETTERS & SETTERS ===
-    public BigDecimal getIdAplicacoes() {
-        return idAplicacoes;
+    public BigDecimal getIdAplicacao() {
+        return idAplicacao;
     }
 
     public void setNomVacina(String nomVacina) {
         this.nomVacina = nomVacina;
     }
 
-    public Clientes getCliente() {
+    public Cliente getCliente() {
         return cliente;
     }
 
-    public void setCliente(Clientes cliente) {
+    public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
 
@@ -77,14 +86,14 @@ public class Aplicacoes {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Aplicacoes that = (Aplicacoes) o;
-        return idAplicacoes.equals(that.idAplicacoes) && Objects.equals(cliente, that.cliente)
+        Aplicacao that = (Aplicacao) o;
+        return idAplicacao.equals(that.idAplicacao) && Objects.equals(cliente, that.cliente)
             && Objects.equals(nomVacina, that.nomVacina) && Objects
             .equals(datAplicacao, that.datAplicacao);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAplicacoes, cliente, nomVacina, datAplicacao);
+        return Objects.hash(idAplicacao, cliente, nomVacina, datAplicacao);
     }
 }

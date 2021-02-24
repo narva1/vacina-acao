@@ -1,8 +1,7 @@
 package br.com.vaptzupt.vacinacao.services;
 
-import br.com.vaptzupt.vacinacao.models.Clientes;
+import br.com.vaptzupt.vacinacao.models.Cliente;
 import br.com.vaptzupt.vacinacao.repositories.IClienteRepository;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,7 @@ public class ClienteService {
         this.repository = repository;
     }
 
-    public List<Clientes> buscarTodos() {
+    public List<Cliente> buscarTodos() {
         return null;
     }
 }

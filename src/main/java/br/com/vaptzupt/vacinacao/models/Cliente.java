@@ -11,9 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-public class Clientes {
+@Table(name = "CLIENTES")
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,13 +31,20 @@ public class Clientes {
     private Date datNascimento;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente")
-    private List<Aplicacoes> aplicacoes;
+    private List<Aplicacao> aplicacoes;
 
     // === CONSTRUTORES ===
-    public Clientes() {
+    public Cliente() {
     }
 
-    public Clientes(String email, String cpf, Date datNascimento) {
+    public Cliente(String email, String cpf, Date datNascimento) {
+        this.email = email;
+        this.cpf = cpf;
+        this.datNascimento = datNascimento;
+    }
+
+    public Cliente(BigDecimal idCliente, String email, String cpf, Date datNascimento) {
+        this.idCliente = idCliente;
         this.email = email;
         this.cpf = cpf;
         this.datNascimento = datNascimento;
@@ -66,6 +75,10 @@ public class Clientes {
         return datNascimento;
     }
 
+    public List<Aplicacao> getAplicacoes() {
+        return aplicacoes;
+    }
+
     public void setDatNascimento(Date datNascimento) {
         this.datNascimento = datNascimento;
     }
@@ -79,10 +92,10 @@ public class Clientes {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Clientes clientes = (Clientes) o;
-        return idCliente.equals(clientes.idCliente) && Objects.equals(email, clientes.email)
-            && Objects.equals(cpf, clientes.cpf) && Objects
-            .equals(datNascimento, clientes.datNascimento);
+        Cliente cliente = (Cliente) o;
+        return idCliente.equals(cliente.idCliente) && Objects.equals(email, cliente.email)
+            && Objects.equals(cpf, cliente.cpf) && Objects
+            .equals(datNascimento, cliente.datNascimento);
     }
 
     @Override
